@@ -1,0 +1,2 @@
+[run]
+include = casbin_peewee_adapter/*
