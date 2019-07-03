@@ -5,7 +5,7 @@ import os
 import simpleeval
 from casbin_peewee_adapter import Adapter, CasbinRule
 LOG_ENABLED = True
-DATABAEE = peewee.SqliteDatabase('test.db')
+DATABAEE = peewee.SqliteDatabase('db.sqlite3')
 CASBIN_ADAPTER = Adapter(database=DATABAEE)
 # from casbin_peewee_adapter.config import DEFAULT_MYSQL_DATABAEE
 # CASBIN_ADAPTER = Adapter(database=DEFAULT_MYSQL_DATABAEE)
@@ -93,9 +93,6 @@ class TestConfig(TestCase):
 
     def test_repr(self):
         rule = CasbinRule(ptype='p', v0='alice', v1='data1', v2='read')
-        print(repr(rule))
         self.assertEqual(repr(rule), '<CasbinRule: p, alice, data1, read>')
         rule.save()
-        print(rule.id)
-        print(repr(rule))
         self.assertRegex(repr(rule), r'<CasbinRule \d+: p, alice, data1, read>')
